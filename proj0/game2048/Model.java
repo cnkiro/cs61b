@@ -5,11 +5,11 @@ import java.util.Observable;
 
 
 /** The state of a game of 2048.
- *  @author TODO: YOUR NAME HERE
+ *  @author cnkiro
  */
 public class Model extends Observable {
     /** Current contents of the board. */
-    private Board board;
+    private final Board board;
     /** Current score. */
     private int score;
     /** Maximum score so far.  Updated when game ends. */
@@ -113,7 +113,41 @@ public class Model extends Observable {
         // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
-
+        board.setViewingPerspective(side);
+        // TODO: first step : like [2, x, 2, x] -> [2, 2, x, x]
+        for (int col = 0; col < board.size(); col++) {
+            for (int row = board.size() - 1; row >= 0; row--) {
+                if (board.tile(col, row) != null) {
+                    Tile t = board.tile(col, row);
+                    for (int k = board.size() - 1; k > row; k--) {
+                        if (board.tile(col, k) == null) {
+                            board.move(col, k, t);
+                            changed = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            // TODO: second step : like [2, 2, x, x] -> [4, x, x, x]
+            for (int row = board.size() - 1; row >= 1; row--) {
+                int nextRow = row - 1;
+                if (board.tile(col, row) != null && board.tile(col, nextRow) != null) {
+                    Tile thisTile = board.tile(col, row);
+                    Tile nextTile = board.tile(col, nextRow);
+                    if (thisTile.value() == nextTile.value()) {
+                        board.move(col, row, nextTile);
+                        score += nextTile.value() * 2;
+                        for (int i = nextRow - 1; i >= 0; i--) {
+                            if (board.tile(col, i) != null) {
+                                board.move(col, i + 1, board.tile(col, i));
+                            }
+                        }
+                        changed = true;
+                    }
+                }
+            }
+        }
+        board.setViewingPerspective(Side.NORTH);
         checkGameOver();
         if (changed) {
             setChanged();
@@ -137,8 +171,17 @@ public class Model extends Observable {
      *  Empty spaces are stored as null.
      * */
     public static boolean emptySpaceExists(Board b) {
+        boolean result = false;
         // TODO: Fill in this function.
-        return false;
+        for (int col = 0; col < b.size(); col++) {
+            for (int row = 0; row < b.size(); row++) {
+                if (b.tile(col, row) == null) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     /**
@@ -147,8 +190,19 @@ public class Model extends Observable {
      * given a Tile object t, we get its value with t.value().
      */
     public static boolean maxTileExists(Board b) {
+        boolean result = false;
         // TODO: Fill in this function.
-        return false;
+        for (int col = 0; col < b.size(); col++) {
+            for (int row = 0; row < b.size(); row++) {
+                if (b.tile(col, row) != null) {
+                    if (b.tile(col, row).value() == MAX_PIECE) {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     /**
@@ -159,7 +213,55 @@ public class Model extends Observable {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
-        return false;
+        boolean result = false;
+        for (int col = 0; col < b.size(); col++) {
+            for (int row = 0; row < b.size(); row++) {
+                if (b.tile(col, row) == null) {
+                    result = true;
+                    break;
+                } else {
+                    if (checkNeighbor(b.tile(col, row), b)) {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    private static boolean checkNeighbor(Tile t, Board b) {
+        boolean result = false;
+        int col = t.col();
+        int row = t.row();
+        for (int i = -1; i < 2; i++) {
+            if (col + i < b.size() && col + i >= 0) {
+                if (i != 0) {
+                    if (b.tile(col + i, row) == null) {
+                        continue;
+                    }
+                    if (t.value() == b.tile(col + i, row).value()) {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        for (int i = -1; i < 2; i++) {
+            if (row + i < b.size() && row + i > 0) {
+                if (i != 0) {
+                    if (b.tile(col, row + i) == null) {
+                        continue;
+                    }
+                    if (t.value() == b.tile(col, row + i).value()) {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return result;
     }
 
 
