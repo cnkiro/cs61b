@@ -19,25 +19,26 @@ public class ArrayDeque<T> {
         if (size == 0) {
             array[0] = item;
             tail = 0;
+        } else {
+            //if (size == array.length) {
+            //    resize();
+            //}
+            array[(head + array.length - 1) % array.length] = item;
+            head = (head + array.length - 1) % array.length;
+            size += 1;
         }
-
-        //if (size == array.length) {
-        //    resize();
-        //}
-        array[(head + array.length - 1) % array.length] = item;
-        head = (head + array.length - 1) % array.length;
-        size += 1;
     }
 
     public void addLast(T item) {
         if (size == 0) {
             array[0] = item;
             tail = 0;
+        } else {
+            //if (size == array.length) {
+            //}
+            array[(head + array.length + 1) % array.length] = item;
+            tail = (head + array.length + 1) % array.length;
         }
-        //if (size == array.length) {
-        //}
-        array[(head + array.length + 1) % array.length] = item;
-        tail = (head + array.length + 1) % array.length;
         size += 1;
     }
 
