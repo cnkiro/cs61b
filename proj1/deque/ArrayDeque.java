@@ -8,7 +8,19 @@ public class ArrayDeque<T> {
     private int tail;
 
 
+    public ArrayDeque() {
+        array = null;
+        size = 0;
+        head = 0;
+        tail = 0;
+    }
+
     public void addFirst(T item) {
+        if (size == 0) {
+            array[0] = item;
+            tail = 0;
+        }
+
         //if (size == array.length) {
         //    resize();
         //}
@@ -18,6 +30,10 @@ public class ArrayDeque<T> {
     }
 
     public void addLast(T item) {
+        if (size == 0) {
+            array[0] = item;
+            tail = 0;
+        }
         //if (size == array.length) {
         //}
         array[(head + array.length + 1) % array.length] = item;
