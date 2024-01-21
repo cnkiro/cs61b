@@ -26,9 +26,6 @@ public class AListNoResizing<Item> {
 
     /** Inserts X into the back of the list. */
     public void addLast(Item x) {
-        if (size == items.length){
-
-        }
         items[size] = x;
         size = size + 1;
     }
@@ -48,7 +45,7 @@ public class AListNoResizing<Item> {
     }
 
     /** Deletes item from back of the list and
-      * returns deleted item. */
+     * returns deleted item. */
     public Item removeLast() {
         Item x = getLast();
         items[size - 1] = null;
