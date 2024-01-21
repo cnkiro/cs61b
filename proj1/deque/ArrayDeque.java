@@ -9,7 +9,7 @@ public class ArrayDeque<T> {
 
 
     public ArrayDeque() {
-        array = null;
+        array = (T[])new Object[8];
         size = 0;
         head = 0;
         tail = 0;
@@ -25,8 +25,8 @@ public class ArrayDeque<T> {
             //}
             array[(head + array.length - 1) % array.length] = item;
             head = (head + array.length - 1) % array.length;
-            size += 1;
         }
+        size += 1;
     }
 
     public void addLast(T item) {
@@ -67,6 +67,7 @@ public class ArrayDeque<T> {
         T item = array[head];
         array[head] = null;
         head = (head + 1) % array.length;
+        size--;
         return item;
     }
 
@@ -77,6 +78,7 @@ public class ArrayDeque<T> {
         T item = array[tail];
         array[tail] = null;
         tail = (tail - 1 + array.length) % array.length;
+        size--;
         return item;
     }
 
