@@ -48,14 +48,11 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
     private void resize(int capacity) {
         T[] temp = (T[]) new Object[capacity];
-        for (int i = 0; i < nextLast; i++) {
-            temp[i] = items[i];
+        for (int i = 1; i <= size; i++) {
+            temp[(nextFirst + i + items.length) % temp.length] = items[(nextFirst + i) % items.length];
         }
-        for (int i = nextFirst + 1; i < items.length; i++) {
-            temp[i + size] = items[i];
-        }
+        nextFirst = (nextFirst + items.length) % temp.length;
         items = temp;
-        nextFirst = nextFirst + size;
     }
 
     public void printDeque() {
@@ -72,8 +69,8 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         if (size == 0) {
             return null;
         }
-        if (size <= items.length / 4) {
-            resize(2 * size);
+        if (size <= items.length / 4 && items.length >= 16) {
+            resize(items.length / 2);
         }
         T item = items[(nextFirst + 1) % items.length];
         items[(nextFirst + 1) % items.length] = null;
@@ -86,8 +83,8 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         if (size == 0) {
             return null;
         }
-        if (size <= items.length / 4) {
-            resize(2 * size);
+        if (size < items.length / 4 && items.length >= 16) {
+            resize(items.length / 2);
         }
         T item = items[(nextLast - 1 + items.length) % items.length];
         items[(nextLast - 1 + items.length) % items.length] = null;
