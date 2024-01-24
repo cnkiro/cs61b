@@ -110,9 +110,9 @@ public class ArrayDequeTest {
 
     }
 
-    //@Test
-    /* Add large number of elements to deque; check if order is correct. */
-    /*public void bigLLDequeTest() {
+    @Test
+     //Add large number of elements to deque; check if order is correct. */
+    public void bigLLDequeTest() {
 
         ArrayDeque<Integer> lld1 = new ArrayDeque<>();
         for (int i = 0; i < 1000000; i++) {
@@ -129,5 +129,4 @@ public class ArrayDequeTest {
 
     }
 
-     */
 }

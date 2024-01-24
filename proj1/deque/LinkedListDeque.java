@@ -2,8 +2,10 @@ package deque;
 
 import java.awt.event.ItemEvent;
 import java.security.PublicKey;
+import java.util.Iterator;
+import java.util.LinkedList;
 
-public class LinkedListDeque<T> {
+public class LinkedListDeque<T> implements Iterable {
 
     int size;
     public LDNode Sentinel;
@@ -104,5 +106,59 @@ public class LinkedListDeque<T> {
             i++;
         }
         return p.Item;
+    }
+
+    public T getRecursive(int index) {
+        if (index == 0) {
+            return Sentinel.next.Item;
+        } else {
+            return this.getRecursive(index - 1);
+        }
+    }
+
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (o.getClass() != this.getClass()) {
+            return false;
+        }
+        LinkedList<T> obj = (LinkedList<T>) o;
+        if (obj.size() != this.size()) {
+            return false;
+        }
+        LinkedIterator<T> i1 = (LinkedIterator<T>) this.iterator();
+        LinkedIterator<T> i2 = (LinkedIterator<T>) obj.iterator();
+        while (i1.hasNext() && i2.hasNext()) {
+            if (i1.next() != i2.next()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Iterator<T> iterator() {
+        return new LinkedIterator<>();
+    }
+
+    private class LinkedIterator<T> implements Iterator<T> {
+        LDNode wiz;
+
+        public LinkedIterator() {
+            wiz = Sentinel.next;
+
+        }
+        public boolean hasNext() {
+            if (wiz.next != null) {
+                return true;
+            }
+            return false;
+        }
+
+        public T next() {
+            T x = (T) wiz.Item;
+            wiz = wiz.next;
+            return x;
+        }
     }
 }
