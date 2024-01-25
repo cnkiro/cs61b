@@ -1,7 +1,6 @@
 package deque;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 
 public class LinkedListDeque<T> implements Iterable, Deque<T> {
 
@@ -123,7 +122,7 @@ public class LinkedListDeque<T> implements Iterable, Deque<T> {
         if (o.getClass() != this.getClass()) {
             return false;
         }
-        LinkedList<T> obj = (LinkedList<T>) o;
+        LinkedListDeque<T> obj = (LinkedListDeque<T>) o;
         if (obj.size() != this.size()) {
             return false;
         }
