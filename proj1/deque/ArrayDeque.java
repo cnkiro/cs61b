@@ -20,6 +20,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         nextLast= 5;
     }
 
+    @Override
     public void addFirst(T item) {
         if (items.length == size) {
             resize(size * 2);
@@ -29,6 +30,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         size += 1;
     }
 
+    @Override
     public void addLast(T item) {
         if (items.length == size) {
             resize(size * 2);
@@ -38,10 +40,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         size += 1;
     }
 
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
+    @Override
     public int size() {
         return size;
     }
@@ -55,16 +54,20 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         items = temp;
     }
 
+    @Override
     public void printDeque() {
-        int index = nextFirst + 1;
-        while (index != (nextLast - 1 + items.length) % items.length) {
-            T item = items[index];
-            System.out.print(item.toString());
-            index = (index + 1) % items.length;
+        for (int i = 0; i < size ; i++) {
+            T item = items[(i + nextFirst + 1) % items.length];
+            if (i < size - 1) {
+                System.out.print(item.toString() + " ");
+            }
+            if (i == size - 1) {
+                System.out.println(item.toString());
+            }
         }
-        System.out.println();
     }
 
+    @Override
     public T removeFirst() {
         if (size == 0) {
             return null;
@@ -79,6 +82,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         return item;
     }
 
+    @Override
     public T removeLast() {
         if (size == 0) {
             return null;
@@ -93,6 +97,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         return item;
     }
 
+    @Override
     public T get(int index) {
         return items[(index + nextFirst - 1) % items.length];
     }

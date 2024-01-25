@@ -5,7 +5,7 @@ import java.security.PublicKey;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class LinkedListDeque<T> implements Iterable {
+public class LinkedListDeque<T> implements Iterable, Deque<T> {
 
     int size;
     public LDNode Sentinel;
@@ -34,7 +34,7 @@ public class LinkedListDeque<T> implements Iterable {
         Sentinel.next = Sentinel;
     }
 
-
+    @Override
     public void addFirst(T item) {
         LDNode p = new LDNode(item, null, null);
         p.next = Sentinel.next;
@@ -44,6 +44,7 @@ public class LinkedListDeque<T> implements Iterable {
         size++;
     }
 
+    @Override
     public void addLast(T item) {
         LDNode p = new LDNode(item, null, null);
         p.prev = Sentinel.prev;
@@ -53,14 +54,12 @@ public class LinkedListDeque<T> implements Iterable {
         size++;
     }
 
-    public boolean isEmpty() {
-        return (size == 0);
-    }
-
+    @Override
     public int size(){
         return size;
     }
 
+    @Override
     public void printDeque() {
         if (size == 0) {
             return;
@@ -68,14 +67,15 @@ public class LinkedListDeque<T> implements Iterable {
         else {
             int temp = size;
             LDNode p = Sentinel.next;
-            while (size > 0) {
+            while (size > 1) {
                 System.out.print(p.Item.toString() + " ");
                 size--;
             }
-            System.out.println();
+            System.out.println(p.Item.toString());
         }
     }
 
+    @Override
     public T removeFirst() {
         if (size == 0) {
             return null;
@@ -87,6 +87,7 @@ public class LinkedListDeque<T> implements Iterable {
         return p.Item;
     }
 
+    @Override
     public T removeLast() {
         if (size == 0) {
             return null;
@@ -98,6 +99,7 @@ public class LinkedListDeque<T> implements Iterable {
         return p.Item;
     }
 
+    @Override
     public T get(int index) {
         LDNode p = Sentinel.next;
         int i = 1;
