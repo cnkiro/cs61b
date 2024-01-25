@@ -1,7 +1,5 @@
 package deque;
 
-import java.awt.event.ItemEvent;
-import java.security.PublicKey;
 import java.util.Iterator;
 import java.util.LinkedList;
 

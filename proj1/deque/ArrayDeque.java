@@ -3,7 +3,6 @@ package deque;
 import org.hamcrest.internal.ArrayIterator;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 
 //Author: cnkiro
 public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
