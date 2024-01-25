@@ -13,10 +13,10 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
 
     public ArrayDeque() {
-        items = (T[])new Object[8];
+        items = (T[]) new Object[8];
         size = 0;
         nextFirst = 4;
-        nextLast= 5;
+        nextLast = 5;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
     @Override
     public void printDeque() {
-        for (int i = 0; i < size ; i++) {
+        for (int i = 0; i < size; i++) {
             T item = items[(i + nextFirst + 1) % items.length];
             if (i < size - 1) {
                 System.out.print(item.toString() + " ");
@@ -74,7 +74,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         if (size == 0) {
             return null;
         }
-        if (size <= items.length / 4 && items.length > 16) {
+        if (size <= items.length / 4 && items.length > 8) {
             resize(items.length / 2);
         }
         T item = items[(nextFirst + 1) % items.length];
@@ -89,7 +89,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         if (size == 0) {
             return null;
         }
-        if (size < items.length / 4 && items.length > 16) {
+        if (size < items.length / 4 && items.length > 8) {
             resize(items.length / 2);
         }
         T item = items[(nextLast - 1 + items.length) % items.length];
@@ -114,7 +114,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         if (this == o) {
             return true;
         }
-        ArrayDeque<T> obj = (ArrayDeque<T>) o;
+        Deque<T> obj = (Deque<T>) o;
         if (obj.size() != this.size()) {
             return false;
         }
@@ -134,7 +134,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
         private int wizpos;
 
-        public ArrayIterator() {
+        ArrayIterator() {
             wizpos = 0;
         }
 

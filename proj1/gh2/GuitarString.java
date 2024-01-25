@@ -1,8 +1,7 @@
 package gh2;
 
-import deque.ArrayDeque;
-import deque.Deque;
 import deque.LinkedListDeque;
+import deque.Deque;
 
 
 //Note: This file will not compile until you complete the Deque implementations
@@ -14,14 +13,14 @@ public class GuitarString {
     private static final double DECAY = .996; // energy decay factor
 
     /* Buffer for storing sound data. */
-     private Deque<Double> buffer;
+    private Deque<Double> buffer = new LinkedListDeque<>();
 
     /* Create a guitar string of the given frequency.  */
     public GuitarString(double frequency) {
-        buffer = new LinkedListDeque<>();
-        for (int i = 0; i < Math.round(SR / frequency); i++) {
-            buffer.addLast((double) 0);
-        }
+       int capacity = (int) Math.round(SR / frequency);
+       for (int i = 0; i < capacity; i++) {
+           buffer.addLast(0.0);
+       }
     }
 
 
@@ -42,7 +41,8 @@ public class GuitarString {
      * the Karplus-Strong algorithm.
      */
     public void tic() {
-        double newDouble = ((buffer.removeFirst() + buffer.get(1)) / 2) * DECAY;
+        double newDouble = ((buffer.get(0) + buffer.get(1)) / 2.0) * DECAY;
+        buffer.removeFirst();
         buffer.addLast(newDouble);
     }
 
