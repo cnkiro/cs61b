@@ -1,0 +1,95 @@
+"C:\Program Files\Eclipse Adoptium\jdk-17.0.4.101-hotspot\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2\lib\idea_rt.jar=55080:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2\bin" -Dfile.encoding=UTF-8 -classpath "C:\Users\36562\Desktop\cs61b\lab8\target\classes;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\ucb.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\algs4.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\jh61b.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\stdlib.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\junit-4.12.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\xchart-3.5.1.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\stdlib-package.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\hamcrest-core-1.3.jar" speed.InsertRandomSpeedTest
+
+ This program inserts random Strings of length L
+ Into different types of maps as <String, Integer> pairs.
+
+What would you like L to be?: 10
+
+Enter # strings to insert into hashmap.ULLMap: 100
+class hashmap.ULLMap: 0.00 sec
+
+Enter # strings to insert into your hashmap.MyHashMap: 10
+class hashmap.MyHashMap: 0.00 sec
+
+Enter # strings to insert into Java's HashMap: 100
+Java's Built-in HashMap: 0.00 sec
+
+Would you like to try more timed-tests? (y/n)y
+
+Enter # strings to insert into hashmap.ULLMap: 100
+class hashmap.ULLMap: 0.00 sec
+
+Enter # strings to insert into your hashmap.MyHashMap: 100
+class hashmap.MyHashMap: 0.00 sec
+
+Enter # strings to insert into Java's HashMap: 100
+Java's Built-in HashMap: 0.00 sec
+
+Would you like to try more timed-tests? (y/n)y
+
+Enter # strings to insert into hashmap.ULLMap: 10000
+class hashmap.ULLMap: 0.15 sec
+
+Enter # strings to insert into your hashmap.MyHashMap: 10000
+class hashmap.MyHashMap: 0.01 sec
+
+Enter # strings to insert into Java's HashMap: 10000
+Java's Built-in HashMap: 0.00 sec
+
+Would you like to try more timed-tests? (y/n)y
+
+Enter # strings to insert into hashmap.ULLMap: 100000
+--Stack Overflow -- couldn't add 100000 strings of length 10.
+
+Enter # strings to insert into your hashmap.MyHashMap: 50000
+class hashmap.MyHashMap: 0.03 sec
+
+Enter # strings to insert into Java's HashMap: 50000
+Java's Built-in HashMap: 0.01 sec
+
+If we insert the data in order, it is better to choose BSTMap.
+
+
+"C:\Program Files\Eclipse Adoptium\jdk-17.0.4.101-hotspot\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2\lib\idea_rt.jar=55837:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2\bin" -Dfile.encoding=UTF-8 -classpath "C:\Users\36562\Desktop\cs61b\lab8\target\classes;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\ucb.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\algs4.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\jh61b.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\stdlib.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\junit-4.12.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\xchart-3.5.1.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\stdlib-package.jar;C:\Users\36562\Desktop\cs61b\library-sp21\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2 (1)\library-sp21-c4275362bc496eea32ac8142b3806ca6bd1978e2\javalib\hamcrest-core-1.3.jar" speed.BucketsSpeedTest
+
+ This program inserts random Strings of length L
+ Into different types of maps as <String, Integer> pairs.
+
+What would you like L to be?: 10
+
+Enter # strings to insert into each map: 1000
+class hashmap.MyHashMapALBuckets: 0.00 sec
+class hashmap.MyHashMapLLBuckets: 0.00 sec
+class hashmap.MyHashMapTSBuckets: 0.00 sec
+class hashmap.MyHashMapHSBuckets: 0.00 sec
+class hashmap.MyHashMapPQBuckets: 0.00 sec
+
+Would you like to try more timed-tests? (y/n)y
+
+Enter # strings to insert into each map: 10000
+class hashmap.MyHashMapALBuckets: 0.01 sec
+class hashmap.MyHashMapLLBuckets: 0.01 sec
+class hashmap.MyHashMapTSBuckets: 0.02 sec
+class hashmap.MyHashMapHSBuckets: 0.01 sec
+class hashmap.MyHashMapPQBuckets: 0.01 sec
+
+Would you like to try more timed-tests? (y/n)y
+
+Enter # strings to insert into each map: 50000
+class hashmap.MyHashMapALBuckets: 0.03 sec
+class hashmap.MyHashMapLLBuckets: 0.02 sec
+class hashmap.MyHashMapTSBuckets: 0.05 sec
+class hashmap.MyHashMapHSBuckets: 0.03 sec
+class hashmap.MyHashMapPQBuckets: 0.04 sec
+
+Would you like to try more timed-tests? (y/n)y
+
+Enter # strings to insert into each map: 100000
+class hashmap.MyHashMapALBuckets: 0.06 sec
+class hashmap.MyHashMapLLBuckets: 0.05 sec
+class hashmap.MyHashMapTSBuckets: 0.07 sec
+class hashmap.MyHashMapHSBuckets: 0.12 sec
+class hashmap.MyHashMapPQBuckets: 0.05 sec
+
+Would you like to try more timed-tests? (y/n)
+
