@@ -117,6 +117,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     public void clear() {
         buckets = createTable(16);
         N = 0;
+        set = new HashSet<>();
     }
 
     @Override
