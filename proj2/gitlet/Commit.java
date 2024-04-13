@@ -1,21 +1,25 @@
 package gitlet;
-
-// TODO: any imports you need here
-
 import java.io.File;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import gitlet.Repository.*;
 
-import static gitlet.Utils.writeContents;
-import static gitlet.Utils.writeObject;
+// TODO: any imports you need here
+
+import java.util.Date; // TODO: You'll likely use this in this class
+
+import static gitlet.Repository.*;
+
 
 /** Represents a gitlet commit object.
  *  TODO: It's a good idea to give a description here of what else this Class
  *  does at a high level.
  *
- *  @author TODO
+ *  @author cnkiro
  */
 public class Commit implements Serializable {
     /**
@@ -28,17 +32,19 @@ public class Commit implements Serializable {
 
     /** The message of this Commit. */
     private String message;
-    private String id;
+    private String ID;
     private Map<String, String> fileNameToBlobID;
     private Date currentTime;
     private List<String> parentsID;
+
+    public Commit() {}
 
     public Commit(String message, Map<String, String> fileNameToBlobID, Date currentTime, List<String> parentsID) {
         this.message = message;
         this.fileNameToBlobID = fileNameToBlobID;
         this.currentTime = currentTime;
         this.parentsID = parentsID;
-        this.id = createID();
+        this.ID = Utils.sha1(message, dateToTimeStamp(currentTime), fileNameToBlobID.toString(), parentsID.toString());
     }
 
     private static String dateToTimeStamp(Date date) {
@@ -46,48 +52,80 @@ public class Commit implements Serializable {
         return dateFormat.format(date);
     }
 
-    private String createID() {
-        return Utils.sha1(this.message, this.fileNameToBlobID.toString(), dateToTimeStamp(this.currentTime), this.parentsID.toString());
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getID() {
-        return this.id;
+        return ID;
     }
 
-    public void SaveCommit(File file) {
-        File f = new File(file, this.id);
-        writeObject(f, this);
-    }
-
-    public Map<String, String> getMap() {
-        return this.fileNameToBlobID;
-    }
-
-    public boolean containsFile(String fileName) {
-        return this.fileNameToBlobID.containsKey(fileName);
-    }
-
-    public String getMessage() {
-        return message;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public Map<String, String> getFileNameToBlobID() {
         return fileNameToBlobID;
     }
 
+    public void setFileNameToBlobID(Map<String, String> fileNameToBlobID) {
+        this.fileNameToBlobID = fileNameToBlobID;
+    }
+
     public Date getCurrentTime() {
         return currentTime;
+    }
+
+    public void setCurrentTime(Date currentTime) {
+        this.currentTime = currentTime;
     }
 
     public List<String> getParentsID() {
         return parentsID;
     }
 
-    public void printMessage() {
+    public void setParentsID(List<String> parentsID) {
+        this.parentsID = parentsID;
+    }
+
+    public void save() {
+        try {
+            File f = Utils.join(OBJECTS_DIR, this.ID);
+            f.createNewFile();
+            Utils.writeObject(f, this);
+        } catch (Exception e) {
+        }
+        Utils.writeContents(HEAD_FILE, this.ID);
+        Utils.writeContents(MASTER_HEAD, this.ID);
+    }
+
+    public boolean contain(Blob blob) {
+        return this.fileNameToBlobID.containsValue(blob.getID());
+    }
+
+    public void print() {
         System.out.println("===");
-        System.out.println("commit " + this.id);
-        System.out.println(dateToTimeStamp(this.currentTime));
+        System.out.println("commit " + this.ID);
+        System.out.println("Date: " + dateToTimeStamp(this.getCurrentTime()));
         System.out.println(this.message);
         System.out.println();
+    }
+
+    public void printfileName() {
+        for (String file : fileNameToBlobID.keySet()) {
+            System.out.println(file);
+        }
+    }
+
+    public boolean containsFile(String fileName) {
+        return fileNameToBlobID.containsKey(fileName);
+    }
+
+    public String getBlobIDByFileName(String fileName) {
+        return fileNameToBlobID.get(fileName);
     }
 }

@@ -2,31 +2,40 @@ package gitlet;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.Map;
-import gitlet.Repository;
 
 public class Blob implements Serializable {
     private String fileName;
-    private String id;
-    private byte[] contents;
+    private String ID;
+    private byte[] content;
 
+    public Blob() {
 
-    public Blob(String fileName, byte[] contents) {
+    }
+
+    public Blob(String fileName, byte[] content) {
         this.fileName = fileName;
-        this.contents = contents;
-        this.id = Utils.sha1(fileName, contents.toString());
+        this.content = content;
+        this.ID = Utils.sha1(fileName, content);
     }
 
     public String getFileName() {
-        return this.fileName;
+        return fileName;
     }
 
     public String getID() {
-        return  this.id;
+        return ID;
     }
 
-    public void saveFile() {
-        File f = new File(Repository.OBJECT_DIR, this.id);
-        Utils.writeObject(f, this);
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void save() {
+        File f = Utils.join(Repository.OBJECTS_DIR, this.getID());
+        try {
+            f.createNewFile();
+            Utils.writeObject(f, this);
+        } catch (Exception e) {
+        }
     }
 }

@@ -1,47 +1,69 @@
 package gitlet;
 
-import java.io.File;
-
 /** Driver class for Gitlet, a subset of the Git version-control system.
  *  @author TODO
  */
 public class Main {
 
     /** Usage: java gitlet.Main ARGS, where ARGS contains
-     *  <COMMAND> <OPERAND1> <OPERAND2> ... 
+     *  <COMMAND> <OPERAND1> <OPERAND2> ...
      */
     public static void main(String[] args) {
         // TODO: what if args is empty?
-        if (args.length == 0) {
-            // exit
-            return;
-        }
         String firstArg = args[0];
         switch(firstArg) {
             case "init":
                 // TODO: handle the `init` command
-                if (Repository.isInit()) {
-                    Utils.message("A Gitlet version-control system already exists in the current directory");
-                } else {
-                    Repository.initialize();
-                }
+                Repository.initializeRep();
                 break;
             case "add":
                 // TODO: handle the `add [filename]` command
                 Repository.addFile(args[1]);
                 break;
             case "commit":
+                // TODO: handle the 'commit [message]' command
                 if (args.length == 1) {
-                    Utils.message("Please enter a commit message.");
+                    System.out.println(new GitletException("Please enter a commit message").getMessage());
                 }
-                // TODO: handle the 'commit' command
                 Repository.makeCommit(args[1]);
+                break;
             case "rm":
                 // TODO: handle the 'rm [filename]' command
-                Repository.removeFile(args[1]);
+                Repository.remove(args[1]);
+                break;
             case "log":
                 // TODO: handle the 'log' command
                 Repository.printLog();
+                break;
+            case "global-log":
+                // TODO: handle the 'global-log' command
+                Repository.printglobal_log();
+                break;
+            case "find":
+                // TODO: handle the 'find [commitmessage]' command
+                Repository.findCommitByMessage(args[1]);
+                break;
+            case "status":
+                // TODO: handle the 'status' command
+                Repository.status();
+                break;
+            case "checkout":
+                // TODO: handle the 'checkout [filename]' command
+                if (args.length == 3) {
+                    Repository.checkoutFile(args[2]);
+                } else if (args.length == 4) {
+                    Repository.checkoutFileBycommitID(args[3], args[1]);
+                } else if (args.length == 2) {
+                    Repository.checkoutBranch(args[1]);
+                }
+                break;
+            case "rm-branch":
+                // TODO: handle the 'rm-branch [branchname]' command
+                Repository.removeBranch(args[1]);
+                break;
+            case "reset":
+                // TODO: handle the 'reset [commitID]' command
+                Repository.reset(args[1]);
         }
     }
 }
