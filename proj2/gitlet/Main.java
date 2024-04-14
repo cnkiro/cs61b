@@ -57,6 +57,10 @@ public class Main {
                     Repository.checkoutBranch(args[1]);
                 }
                 break;
+            case "branch":
+                // TODO: handle the 'branch [branchname]' command
+                Repository.createBranch(args[1]);
+                break;
             case "rm-branch":
                 // TODO: handle the 'rm-branch [branchname]' command
                 Repository.removeBranch(args[1]);
@@ -64,6 +68,9 @@ public class Main {
             case "reset":
                 // TODO: handle the 'reset [commitID]' command
                 Repository.reset(args[1]);
+            case "merge":
+                // TODO: handle the 'merge [branchname]' command
+                Repository.merge(args[1]);
         }
     }
 }

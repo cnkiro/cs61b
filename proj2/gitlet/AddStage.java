@@ -121,4 +121,8 @@ public class AddStage {
         System.out.println();
         System.out.println();
     }
+
+    public static Map<String, String> getFileNameToBlobID() {
+        return fileNameToBlobID;
+    }
 }
